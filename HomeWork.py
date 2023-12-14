@@ -1,92 +1,163 @@
 '''
-Три точки заданы своими координатами X(x1, x2), Y(y1, y2) и Z(z1, z2). 
-Найти и напечатать координаты точки, для которой угол между осью абсцисс и лучом, соединяющим начало координат с точкой, минимальный.
-Вычисления оформить в виде процедуры.
+1.Дан двумерный массив размером 3x3. Определить максимальное значение среди элементов третьего столбца массива; 
+максимальное значение среди элементов второй строки массива. Вывести полученные значения.
 '''
 '''
-x1 = int(input("Координата x1: "))
-x2 = int(input("Координата x2: "))
-y1 = int(input("Координата y1: "))
-y2 = int(input("Координата y2: "))
-z1 = int(input("Координата z1: "))
-z2 = int(input("Координата z2: "))
-
-def function_1(x1,x2,y1,y2,z1,z2):
-    a = abs(x2) / abs(x1)
-    b = abs(y2) / abs(y1)
-    c = abs(z2) / abs(z1)
-    if min(a,b,c) == a: print ("X", "(", x1,";" ,x2, ")")
-    if min(a,b,c) == b: print("Y", "(", y1, ";" ,y2, ")")
-    else: print ("Z", "(", z1, ";", z2, ")")
-    
-print(function_1(x1,x2,y1,y2,z1,z2))
+n = 3
+trr = []
+yrr = []
+arr = list()
+for i in range(n):
+  brr = list()
+  for i in range(n):
+    brr.append(int(input()))
+  arr.append(brr)
+for i in range(n):
+  for j in range(n):
+    print(arr[i][j], end = ' ')
+  print()
+for i in range(n):
+    trr.append(arr[i][2])
+print("Максимальное: во втором столбце: ", (max(trr)))
+for j in range(n):
+   yrr.append(arr[1][j])
+print("Максимальное во 2 сроке: ",max(yrr) )
 '''
-
 
 ''' 
-2.Найти все простые натуральные числа, не превосходящие n, двоичная запись которых представляет собой палиндром, 
-т. е. читается одинаково слева направо и справа налево. 
+2. Дан двумерный массив размером mxn. 
+Сформировать новый массив заменив положительные элементы единицами, а отрицательные нулями. Вывести оба массива.
 '''
+'''
+n = int(input("Кол-во столбиков: "))
+m = int(input("Кол-во строк: "))
+arr = list()
+for i in range(n):
+   brr = list()
+   for i in range(m):
+      brr.append(int(input()))
+   arr.append(brr)
+for i in range(n):
+  for j in range(m):
+    print(arr[i][j], end = ' ')
+  print()
+print()
+for i in range(n):
+  for j in range(m):
+    if arr[i][j] < 0:
+      arr[i][j] = 0
+    else:
+      arr[i][j] = 1
+for i in range(n):
+  for j in range(m):
+    print(arr[i][j], end = ' ')
+  print()
+'''
+'''
+4. Определить, является ли заданная целая квадратная матрица n-го порядка симметричной (относительно главной диагонали).
+'''
+'''from random import randint
 
-'''
-def is_prime(number): #Другая версия проверки простоты числа 
-    number = int(number)
-    if number % 2 == 0 or number == 1:
-        return False
-    gr = int(number**0.5)
-    for i in range(3, gr, 2):
-        if number % i == 0:
-            return False
-        
-    return True
-'''
-
-'''
-n = int(input("Введите число n: "))
-
-def division(x):
-    my_set = set()
-    for i in range(1,x+1):
-        if x % i == 0:
-            my_set.add(x/i)
-    return (my_set)
+k = 0
+n = int(input("Введите порядок матрицы: "))
+arr = list()
+for i in range(n):
+    brr = list()
+    for i in range(n):
+        brr.append(int(input()))
+    arr.append(brr)
+for i in range(n):
+    for j in range(n):
+       print(arr[i][j], end = ' ')
+    print()
 
 for i in range(n):
-    a = bin(i)[2::]
-    if a == a[::-1] and len(division(i)) == 2:
-        print(i)
+    for j in range(n):
+        if j != i:
+            if arr[i][j] == arr[j][i]:
+                k += 1
+if k == (n**2 - n):
+    print("Матрица симметричная")
+else: print("Матрица не симметричная")
 '''
 '''
-Задана окружность (x-a)^2 + (y-b)^2 = r^2 и точки P(p1, p2), F(f1, f2), L(l1, l2). 
-Выяснить и вывести на экран, сколько точек и какие лежить внутри окружности. Проверку сформировать в виде процедуры.
+5. Дана прямоугольная матрица. Найти строку с наибольшей и строку с наименьшей суммой элементов. Вывести на печать найденные строки и суммы их элементов.
 '''
 '''
-a = int(input("Смещение x "))
-b = int(input("Смещение y "))
-x = int(input("Координата x "))
-y = int(input("Координата y "))
-#(x-a)^2 + (y-b)^2 = r^2
+from random import randint
+
+n = int(input("Введите длину матрицы: "))
+m = int(input("Введите ширину матрицы: "))
+a = -10000000000
+b = 10000000000
+arr = list()
+
+print("Исходная матрица:")
+for i in range(n):
+    brr = list()
+    for j in range(m):
+         brr.append(randint(-15, 15))
+    arr.append(brr)
+for i in range(n):
+    for j in range(m):
+        print(arr[i][j], end= ' ')
+    print()
+for j in range(n):
+    summer_1 = min(sum(arr[j]), b)
+    if b != summer_1:
+        min_string = arr[j]
+    b = summer_1
+print(summer_1, min_string)
+for i in range(n):
+    summer_2 = max(sum(arr[i]), a)
+    if a != summer_1:
+        max_string = arr[i]
+    a = summer_2
+print(summer_2, max_string)
+'''
+
+'''
+6. Дана действительная матрица размером n х m, все элементы которой различны. 
+В каждой строке выбирается элемент с наименьшим значением. Если число четное, то заменяется нулем, нечетное - единицей. Вывести на экран новую матрицу.
+'''
+'''
+from random import randint
+
+def generator(n, m, current_list=[]):
+    while len(set(current_list)) < n * m:
+        current_list = [randint(-5 * (n * m), 5 *(n * m)) for _ in range(n * m)]
+    return list(set(current_list))
+
+n = int(input(Введите длину матрицы: ))
+m = int(input("Введите ширину матрицы: ))
+
+print("Исходная матрица:")
+arr = []
 k = 0
-p1 = int(input("Координата p1 "))
-p2 = int(input("Координата p2 "))
-f1 = int(input("Координата f1 "))
-f2 = int(input("Координата f2 "))
-l1 = int(input("Координата l1 "))
-l2 = int(input("Координата l2 "))
-
-r = (((x - a)**2)+((y-b)**2))**0.5
-long_p = ((p1)**2 + (p2)**2)**0.5
-long_f = ((f1)**2 + (f2)**2)**0.5
-long_l = ((l1)**2 + (l2)**2)**0.5
-point_name_p = "p"
-point_name_f = "f"
-point_name_l = "l"
-
-
-def circle(r,long, point_name):
-    if r >= long:
-        global k
+for i in range(n):
+    brr = []
+    for j in range(m):
+        brr.append(generator(n, m)[k])
         k += 1
-        print("Точка", point_name, "лежит")
-print(circle(r,long_p, point_name_p),circle(r,long_f, point_name_f),circle(r,long_l, point_name_l), "Кол-во точек:", k)
+    arr.append(brr)  
+
+for i in range(n):
+    for j in range(m):
+        print(arr[i][j], end=' ')
+    print()
+print()
+
+total = 9999999999
+print("Преобразованная матрица: ")
+for i in range(n):
+
+    total = min(arr[i])
+    for j in range(m):
+        if arr[i][j] == total:
+            if total % 2 == 0:
+                arr[i][j] = 0
+            else:
+                arr[i][j] = 1
+        print(arr[i][j], end=' ')
+    print()
 '''
